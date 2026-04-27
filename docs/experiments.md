@@ -1,0 +1,2 @@
+# Setup
+I'm not super comfortable with notebooks yet, so I moved the experiment code into a normal Python script (notebooks/experiment.py). It's easier for me to edit one config block at the top, run it from the terminal, and get the markdown output ready to paste here. It also means each entry in this log matches exactly one run of the script, so I can always tell which config produced which result.
