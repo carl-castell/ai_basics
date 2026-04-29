@@ -416,7 +416,7 @@ Now i will start to slowly add debth to the network. I will add one by one hidde
 
 ---
 ## EXP-3
-In experiment 3 i will try out several optimiser functions: sgd, adam, rmsprop, adagrad, nadam
+In experiment 3 i will try out several optimises: sgd, adam, rmsprop, adagrad, nadam
 
 ### [EXP-3.1](#run-exp-21)
 I ran sgd up till now. The corresponding run with the same other parameters as the following
@@ -599,7 +599,103 @@ I have realised, that adam is pretty fast at learning. And I assume that he will
 
 ---
 
+## EXP-5
+Activation
+in experiment 5 I will try out different activation functions: relu, tanh, elu, gelu
 
+### EXP-5.1
+running relu [look at EXP-4.2](#run-exp-42)
+
+### Run EXP-5.2
+
+**Config**
+- Hidden layers: [64, 64]
+- Activation: tanh
+- Optimizer: adam
+- Epochs: 25
+- Batch size: 32
+
+**Results**
+- Train accuracy: 0.838
+- Test accuracy: 0.821
+- Precision: 0.806
+- Recall: 0.740
+- F1: 0.771
+
+![](plots/EXP-5.2.png)
+
+**Confusion matrix**
+
+|  | Predicted Dead | Predicted Survived |
+|---|---|---|
+| **Actual Dead** | 93 | 13 |
+| **Actual Survived** | 19 | 54 |
+
+**Observation:** It is a bit more accurate than relu
+
+---
+
+### Run EXP-5.3
+
+**Config**
+- Hidden layers: [64, 64]
+- Activation: elu
+- Optimizer: adam
+- Epochs: 25
+- Batch size: 32
+
+**Results**
+- Train accuracy: 0.840
+- Test accuracy: 0.816
+- Precision: 0.823
+- Recall: 0.699
+- F1: 0.756
+
+![](plots/EXP-5.3.png)
+
+**Confusion matrix**
+
+|  | Predicted Dead | Predicted Survived |
+|---|---|---|
+| **Actual Dead** | 95 | 11 |
+| **Actual Survived** | 22 | 51 |
+
+**Observation:** elu is a bit less accurate than tanh but still more accurate than relu
+
+---
+
+### Run EXP-5.4
+
+**Config**
+- Hidden layers: [64, 64]
+- Activation: gelu
+- Optimizer: adam
+- Epochs: 25
+- Batch size: 32
+
+**Results**
+- Train accuracy: 0.858
+- Test accuracy: 0.793
+- Precision: 0.846
+- Recall: 0.603
+- F1: 0.704
+
+![](plots/EXP-5.4.png)
+
+**Confusion matrix**
+
+|  | Predicted Dead | Predicted Survived |
+|---|---|---|
+| **Actual Dead** | 98 | 8 |
+| **Actual Survived** | 29 | 44 |
+
+**Observation:** gelu is a the worst out of all even relu was better
+
+---
+
+### EXP-5 Conclusion
+
+The activation functions performed differntly. Ranking in the order (good to bad): tanh, elu, relu, gelu
 
 
 ## Experiment Results
