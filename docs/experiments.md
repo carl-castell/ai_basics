@@ -1,8 +1,14 @@
+
+> [!NOTE]
+> [Jump to conclusion ↓](#overall-conclusion)
+
 # Setup
 I dont like working with notebooks a lot, so I moved the experiment code into a normal Python script (notebooks/experiment.py). It's easier for me to edit one config block at the top, run it from the terminal, and get the markdown output ready to paste here. It also means each entry in this log matches exactly one run of the script, so I can always tell which config produced which result.
 
 # Approach
 As there are several parameters to play around with and i was not sure how to deal with this in the best way. So I decided to optimise one parameter at a time. And at the end try some random changes. For that I thaugt about what would be the best order to do this. And after some reseach I decided for this one:
+
+
 
 ## Parameter adjustment order
 1. Width
@@ -696,12 +702,142 @@ running relu [look at EXP-4.2](#run-exp-42)
 ### EXP-5 Conclusion
 
 The activation functions performed differntly. Ranking in the order (good to bad): tanh, elu, relu, gelu
+Now that I have experimented with each parameter. I want to do one final experiment series, where I want to try outperforming my current best [5.2](#run-exp-52)
+
+## EXP-6
+Running these experiments has given me a deeper understanding of how thes parameters influence the outcome. In this last test I want to try out changeing the hidden layers again. Because I think that I have found the best optimizer, with adam and the best activation function with tanh for this specific task. For changin the networks width and depth I will teprorarily bump up the epochs to 100 in order to have a better view of the plot and identify overfitting better, what I could not do when Initially trying to find values for the hidden layers. 
+First I will run my current best with more epochs
+
+### Run EXP-6.1
+
+**Config**
+- Hidden layers: [64, 64]
+- Activation: tanh
+- Optimizer: adam
+- Epochs: 100
+- Batch size: 32
+
+**Results**
+- Train accuracy: 0.862
+- Test accuracy: 0.782
+- Precision: 0.840
+- Recall: 0.575
+- F1: 0.683
+
+![](plots/EXP-6.1.png)
+
+**Confusion matrix**
+
+|  | Predicted Dead | Predicted Survived |
+|---|---|---|
+| **Actual Dead** | 98 | 8 |
+| **Actual Survived** | 31 | 42 |
+
+**Observation:** I am actually not sure how to interpret this. I will procede changeing hidden layers
+
+---
+
+### Run EXP-6.2
+
+**Config**
+- Hidden layers: [400]
+- Activation: tanh
+- Optimizer: adam
+- Epochs: 10
+- Batch size: 32
+
+**Results**
+- Train accuracy: 0.840
+- Test accuracy: 0.810
+- Precision: 0.831
+- Recall: 0.671
+- F1: 0.742
+
+![](plots/EXP-6.2.png)
+
+**Confusion matrix**
+
+|  | Predicted Dead | Predicted Survived |
+|---|---|---|
+| **Actual Dead** | 96 | 10 |
+| **Actual Survived** | 24 | 49 |
+
+**Observation:** This also is quite interesting as it actually dose not perform bad, however it is not very consisten. Meaning sometimes i get better results sometimes worse
+
+---
+
+### Run EXP-6.3
+
+**Config**
+- Hidden layers: [50, 50]
+- Activation: tanh
+- Optimizer: adam
+- Epochs: 25
+- Batch size: 32
+
+**Results**
+- Train accuracy: 0.853
+- Test accuracy: 0.816
+- Precision: 0.823
+- Recall: 0.699
+- F1: 0.756
+
+![](plots/EXP-6.3.png)
+
+**Confusion matrix**
+
+|  | Predicted Dead | Predicted Survived |
+|---|---|---|
+| **Actual Dead** | 95 | 11 |
+| **Actual Survived** | 22 | 51 |
+
+**Observation:** Playing around with the width and depth of the network. I realised that a depth of 2 works best and gives me the most consistent results. I also identified, that a with around 64 performs quite well. When trying to recreate my previous highscore of 5.2 I could not get it to work consistently. I reduced to [50,50] and eventhoug it didnt give me a better result that the 5.2 experiment I was giving me good results quite consistently.
+At this point I dont have the feeling I am getting any furtere. I am actully happy when hitting around 0.81 test accuracy
 
 
-## Experiment Results
+---
 
-Please document your training results in this cell. You should document:
-- What you tried and what your results and conclusion were.
-- Which model performed best.
-- What your evaluation of the best model is. Is the result good or bad? Why? In addition to the actual score, please also discuss overfitting.
-- Any other observations you made during the experiment.
+# Overall Conclusion
+
+## Improvement
+
+I was able to improve the results,by changing the the default parameters. In the table below I have listed the differences between my first and last run.
+
+I got there by following my planned [approach](#approach) desciped at the top of the document.
+
+In general I thingk my approach was not to bad. The only think that I would change, is setting the epochs to higher value in the beginning. For more Context. And as a last thing have a look at the optimum and adjust it as a last thing. That would have helped me quite a bit especially in the beginning
+
+
+| | [EXP-0.1](#run-exp-01) | [EXP-6.3](#exp-63) |
+|---|---|---|
+| **Hidden layers** | [2] | [50, 50] |
+| **Activation** | relu | tanh |
+| **Optimizer** | sgd | adam |
+| **Epochs** | 50 | 25 |
+| **Train accuracy** | 0.622 | 0.853 |
+| **Test accuracy** | 0.592 | 0.816 |
+| **Precision** | 0.000 | 0.823 |
+| **Recall** | 0.000 | 0.699 |
+| **F1** | 0.000 | 0.756 |
+| **True Negatives** | 106 | 95 |
+| **False Positives** | 0 | 11 |
+| **False Negatives** | 73 | 22 |
+| **True Positives** | 0 | 51 |
+
+## What parameters worked best?
+
+#### Hidden Layers:
+I got the most stable performance with with a depth of 2 and the the higest accuracy at around a width of 50
+
+#### Optimiser:
+The optimiser that gave me the most accurate results was adam.
+
+#### Activation:
+The best activation function, I found was tanh
+
+#### Epochs:
+For epochs it really was quite easy, bechause you did not have to try them out. You could realy just read the optimum of the plot and then change it as a last thing. (I did not fully understand that at the begining)
+
+
+## Summary:
+All in all I learned a lot in this challenge. It took me a while to understand it. But I learned a lot.

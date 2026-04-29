@@ -11,10 +11,10 @@ import subprocess
 # ============================================================
 # CONFIG — edit these for each experiment
 # ============================================================
-EXPERIMENT_ID = "EXP-5.4"
+EXPERIMENT_ID = "EXP-0"
 
-HIDDEN_LAYERS = [64,64]
-ACTIVATION    = "gelu"
+HIDDEN_LAYERS = [50,50]
+ACTIVATION    = "tanh"
 OPTIMIZER     = "adam"
 EPOCHS        = 25
 BATCH_SIZE    = 32
