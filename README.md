@@ -24,13 +24,7 @@ is from Kaggle (already preprocessed for this exercise).
 
 👉 **[Read the experiments and discussion in docs/experiments.md](docs/experiments.md)**
 
-## How it works (quick overview)
-
-The model is a small feedforward neural network built with TensorFlow/Keras.
-Each "experiment" is one full training run with one specific hyperparameter
-changed from the previous best (sequential one-at-a-time tuning). I track
-training loss vs validation loss to spot overfitting, and use accuracy,
-precision, recall, and F1 to evaluate the model.
+## How it works
 
 For each run:
 
@@ -84,7 +78,3 @@ The first run is the baseline. To try a different configuration, open
 - The challenge is based on the [Kaggle Titanic competition](https://www.kaggle.com/c/titanic).
 - The starter notebook and preprocessed dataset were provided as part of the
   SE_14 AI Basics course.
-
-## Author
-
-Carl Castell — SE_14 AI Basics, 2026
