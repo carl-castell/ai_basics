@@ -416,3 +416,136 @@ Now i will start to slowly add debth to the network. I will add one by one hidde
 
 ---
 ## EXP-3
+In experiment 3 i will try out several optimiser functions: sgd, adam, rmsprop, adagrad, nadam
+
+### [EXP-3.1](#run-exp-21)
+I ran sgd up till now. The corresponding run with the same other parameters as the following
+
+### Run EXP-3.2
+
+**Config**
+- Hidden layers: [64, 64]
+- Activation: relu
+- Optimizer: adam
+- Epochs: 50
+- Batch size: 32
+
+**Results**
+- Train accuracy: 0.862
+- Test accuracy: 0.804
+- Precision: 0.828
+- Recall: 0.658
+- F1: 0.733
+
+![](plots/EXP-3.2.png)
+
+**Confusion matrix**
+
+|  | Predicted Dead | Predicted Survived |
+|---|---|---|
+| **Actual Dead** | 96 | 10 |
+| **Actual Survived** | 25 | 48 |
+
+**Observation:** adam achived bette results than sgd. I also want to point out that it got to a good result in far less epochs. After about 10 epochs it started overfitting
+
+---
+
+### Run EXP-3.3
+
+**Config**
+- Hidden layers: [64, 64]
+- Activation: relu
+- Optimizer: rmsprop
+- Epochs: 50
+- Batch size: 32
+
+**Results**
+- Train accuracy: 0.862
+- Test accuracy: 0.799
+- Precision: 0.825
+- Recall: 0.644
+- F1: 0.723
+
+![](plots/EXP-3.3.png)
+
+**Confusion matrix**
+
+|  | Predicted Dead | Predicted Survived |
+|---|---|---|
+| **Actual Dead** | 96 | 10 |
+| **Actual Survived** | 26 | 47 |
+
+**Observation:** rmsprop also perfomed better than sgd but not as good as adam
+
+---
+
+### Run EXP-3.4
+
+**Config**
+- Hidden layers: [64, 64]
+- Activation: relu
+- Optimizer: adagrad
+- Epochs: 50
+- Batch size: 32
+
+**Results**
+- Train accuracy: 0.729
+- Test accuracy: 0.676
+- Precision: 0.857
+- Recall: 0.247
+- F1: 0.383
+
+![](plots/EXP-3.4.png)
+
+**Confusion matrix**
+
+|  | Predicted Dead | Predicted Survived |
+|---|---|---|
+| **Actual Dead** | 103 | 3 |
+| **Actual Survived** | 55 | 18 |
+
+**Observation:** adagrad performed the worst of all up till now
+
+---
+### Run EXP-3.5
+
+**Config**
+- Hidden layers: [64, 64]
+- Activation: relu
+- Optimizer: nadam
+- Epochs: 50
+- Batch size: 32
+
+**Results**
+- Train accuracy: 0.861
+- Test accuracy: 0.799
+- Precision: 0.803
+- Recall: 0.671
+- F1: 0.731
+
+![](plots/EXP-3.5.png)
+
+**Confusion matrix**
+
+|  | Predicted Dead | Predicted Survived |
+|---|---|---|
+| **Actual Dead** | 94 | 12 |
+| **Actual Survived** | 24 | 49 |
+
+**Observation:** nadam als performed really good. But not quite as good as adam
+
+---
+### EXP-3 Conclusion
+out of all the optimizers I tried. adam performed the best.
+
+## EXP-4
+
+
+
+## Experiment Results
+
+Please document your training results in this cell. You should document:
+- What you tried and what your results and conclusion were.
+- Which model performed best.
+- What your evaluation of the best model is. Is the result good or bad? Why? In addition to the actual score, please also discuss overfitting.
+- Any other observations you made during the experiment.
