@@ -11,9 +11,9 @@ import subprocess
 # ============================================================
 # CONFIG — edit these for each experiment
 # ============================================================
-EXPERIMENT_ID = "EXP-1.6"
+EXPERIMENT_ID = "EXP-2.5"
 
-HIDDEN_LAYERS = [128]
+HIDDEN_LAYERS = [32,32]
 ACTIVATION    = "relu"
 OPTIMIZER     = "sgd"
 EPOCHS        = 50

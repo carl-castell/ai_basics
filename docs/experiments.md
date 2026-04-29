@@ -272,3 +272,147 @@ I am going to increase the width by doubling it every time and looking at the re
 **Observation:** I am actually unsure about this. But one thing is definatly shure it did not really improve compared to the 1.5 Run so I will stick with the width of 64.
 
 ---
+## EXP-2
+Now i will start to slowly add debth to the network. I will add one by one hidden layer. I will also try out reducing the width in the deeper layers
+
+### Run EXP-2.1
+
+**Config**
+- Hidden layers: [64, 64]
+- Activation: relu
+- Optimizer: sgd
+- Epochs: 50
+- Batch size: 32
+
+**Results**
+- Train accuracy: 0.837
+- Test accuracy: 0.793
+- Precision: 0.833
+- Recall: 0.616
+- F1: 0.709
+
+![](plots/EXP-2.1.png)
+
+**Confusion matrix**
+
+|  | Predicted Dead | Predicted Survived |
+|---|---|---|
+| **Actual Dead** | 97 | 9 |
+| **Actual Survived** | 28 | 45 |
+
+**Observation:** I can definatley see a small improvement. I will add one more hidden layer. 
+
+---
+### Run EXP-2.2
+
+**Config**
+- Hidden layers: [64, 64, 64]
+- Activation: relu
+- Optimizer: sgd
+- Epochs: 50
+- Batch size: 32
+
+**Results**
+- Train accuracy: 0.838
+- Test accuracy: 0.765
+- Precision: 0.830
+- Recall: 0.534
+- F1: 0.650
+
+![](plots/EXP-2.2.png)
+
+**Confusion matrix**
+
+|  | Predicted Dead | Predicted Survived |
+|---|---|---|
+| **Actual Dead** | 98 | 8 |
+| **Actual Survived** | 34 | 39 |
+
+**Observation:** Test accuracy dropped. however I will validate by adding one more layer (4 )
+
+---
+### Run EXP-2.3
+
+**Config**
+- Hidden layers: [64, 64, 64, 64]
+- Activation: relu
+- Optimizer: sgd
+- Epochs: 50
+- Batch size: 32
+
+**Results**
+- Train accuracy: 0.847
+- Test accuracy: 0.788
+- Precision: 0.818
+- Recall: 0.616
+- F1: 0.703
+
+![](plots/EXP-2.3.png)
+
+**Confusion matrix**
+
+|  | Predicted Dead | Predicted Survived |
+|---|---|---|
+| **Actual Dead** | 96 | 10 |
+| **Actual Survived** | 28 | 45 |
+
+**Observation:** It has gotten a little bit better. But not a lot. I think at this point it is just overfitting. I will reduce one layer and try narrowing down the layer e.g. [64,32]
+
+---
+### Run EXP-2.4
+
+**Config**
+- Hidden layers: [64, 32]
+- Activation: relu
+- Optimizer: sgd
+- Epochs: 50
+- Batch size: 32
+
+**Results**
+- Train accuracy: 0.836
+- Test accuracy: 0.788
+- Precision: 0.843
+- Recall: 0.589
+- F1: 0.694
+
+![](plots/EXP-2.4.png)
+
+**Confusion matrix**
+
+|  | Predicted Dead | Predicted Survived |
+|---|---|---|
+| **Actual Dead** | 98 | 8 |
+| **Actual Survived** | 30 | 43 |
+
+**Observation:** 2.1 [64,64] remains unbeaten. Just for reference i will try how it performs with [32,32]. In order to validate my earlyer conclusion, that 64 width works better than 32
+
+---
+### Run EXP-2.5
+
+**Config**
+- Hidden layers: [32, 32]
+- Activation: relu
+- Optimizer: sgd
+- Epochs: 50
+- Batch size: 32
+
+**Results**
+- Train accuracy: 0.834
+- Test accuracy: 0.782
+- Precision: 0.827
+- Recall: 0.589
+- F1: 0.688
+
+![](plots/EXP-2.5.png)
+
+**Confusion matrix**
+
+|  | Predicted Dead | Predicted Survived |
+|---|---|---|
+| **Actual Dead** | 97 | 9 |
+| **Actual Survived** | 30 | 43 |
+
+**Observation:** Up till now the [64,64] hidden layer remains unbeaten
+
+---
+## EXP-3
