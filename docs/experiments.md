@@ -539,6 +539,66 @@ I ran sgd up till now. The corresponding run with the same other parameters as t
 out of all the optimizers I tried. adam performed the best.
 
 ## EXP-4
+Epochs
+I have realised, that adam is pretty fast at learning. And I assume that he will perform pretty good at around 10 epochs. However i want to just confirm this by running it for more epochs to see how it changes. I will runn it with 200 epochs. Then look at the loss plot and try to identify the sweetspot before it starts overfitting.
+
+### Run EXP-4.1
+
+**Config**
+- Hidden layers: [64, 64]
+- Activation: relu
+- Optimizer: adam
+- Epochs: 200
+- Batch size: 32
+
+**Results**
+- Train accuracy: 0.867
+- Test accuracy: 0.771
+- Precision: 0.820
+- Recall: 0.562
+- F1: 0.667
+
+![](plots/EXP-4.1.png)
+
+**Confusion matrix**
+
+|  | Predicted Dead | Predicted Survived |
+|---|---|---|
+| **Actual Dead** | 97 | 9 |
+| **Actual Survived** | 32 | 41 |
+
+**Observation:** Looking at the plot val loss goes down until epoch 20 ish and then it starts overfitting and goes up. in the next run I will do 25 epochs
+
+---
+### Run EXP-4.2
+
+**Config**
+- Hidden layers: [64, 64]
+- Activation: relu
+- Optimizer: adam
+- Epochs: 25
+- Batch size: 32
+
+**Results**
+- Train accuracy: 0.864
+- Test accuracy: 0.804
+- Precision: 0.839
+- Recall: 0.644
+- F1: 0.729
+
+![](plots/EXP-4.2.png)
+
+**Confusion matrix**
+
+|  | Predicted Dead | Predicted Survived |
+|---|---|---|
+| **Actual Dead** | 97 | 9 |
+| **Actual Survived** | 26 | 47 |
+
+**Observation:** Now I start to get some pretty good results. I will move on to activation for now.
+
+---
+
 
 
 
